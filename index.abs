@@ -1,0 +1,57 @@
+#-------------------------------------------------------------------------------
+# ANSI terminal escapes and colors
+#-------------------------------------------------------------------------------
+names = []
+codes = []
+color = {}
+
+names.push("reset"); codes.push("0")
+
+for i in 0..255 {
+    names.push("ansi"    + str(i)); codes.push("38;5;" + str(i))
+    names.push("on_ansi" + str(i)); codes.push("48;5;" + str(i))
+}
+
+# 4-bit colors
+for idx, name in ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"] {
+    names.push(name);                codes.push(30  + idx)
+    names.push("on_"        + name); codes.push(40  + idx)
+    names.push("bright_"    + name); codes.push(90  + idx)
+    names.push("on_bright_" + name); codes.push(100 + idx)
+}
+
+# Greys
+for i in 0..23 {
+    names.push("grey"    + str(i)); codes.push("38;5;" + str(i))
+    names.push("on_grey" + str(i)); codes.push("48;5;" + str(i))
+}
+
+# RGBs
+for r in 0..5 {
+    for g in 0..5 {
+        for b in 0..5 {
+            rgb = [r, g, b].map(str).join("")
+            names.push("rbg"    + rgb); codes.push("38;5;" + rgb)
+            names.push("on_rbg" + rgb); codes.push("48;5;" + rgb)
+        }
+    }
+}
+
+out = codes.map(str).map( f(c) { "\\e[" + c + "m" } ).join("|")
+cmd = `echo -e -n "$out"`
+
+if cmd.ok {
+    for idx, esc in cmd.split("|") {
+        color[ names[idx] ] = esc
+    }
+}
+
+color.show = f() {
+    for name, esc in color {
+        if type(esc) != "FUNCTION" {
+            echo(esc + name + color.reset)
+        }
+    }
+}
+
+return color
