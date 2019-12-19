@@ -1,9 +1,5 @@
 # abs-term-colors
 
-## INSTALLATION
-
-See the [official docs](https://www.abs-lang.org/misc/3pl)
-
 ## SYNOPSIS
 
     $ abs get github.com/sysread/abs-term-colors
@@ -23,6 +19,10 @@ for use on ANSI color terminals.
 
 Requires the use of `echo -n -e` in order to build the escape sequences. This
 is done in a single shell call.
+
+## INSTALLATION
+
+See the [official docs](https://www.abs-lang.org/misc/3pl)
 
 ## FUNCTIONS
 
@@ -92,3 +92,10 @@ Provides the following keyed escape codes:
 #### `on_white`
 #### `on_bright_white`
 
+## AUTHOR
+
+Jeff Ober <sysread@fastmail.fm>
+
+## COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2019 by Jeff Ober.
