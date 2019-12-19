@@ -1,18 +1,18 @@
-# abs-term-colors
+# abs-term-color
 
 ## SYNOPSIS
 
-    $ abs get github.com/sysread/abs-term-colors
+    $ abs get github.com/sysread/abs-term-color
 
     # example.abs
-    color = require("abs-term-colors")
+    color = require("abs-term-color")
 
     echo(color.green + color.on_cyan + "Enter your selection: " + color.reset)
     response = stdin()
 
 ## DESCRIPTION
 
-`abs-term-colors` builds and returns a hash of color escape strings suitable
+`abs-term-color` builds and returns a hash of color escape strings suitable
 for use on ANSI color terminals.
 
 ## LIMITATIONS
